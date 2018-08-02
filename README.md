@@ -21,6 +21,10 @@
    
 ### Gestalt Pattern Matching
       - Score
+      
+### Jaro
+      - Distance (normalized)
+      - Sequence (normalized)
    
 ## Usage
     make 
@@ -55,3 +59,11 @@
       
 ### Gestalt Pattern Matching
       - gpmscore(sequence1, sequence2)
+
+### Jaro 
+      - jarodistance(sequence1, sequence2)
+      - jarodistance_norm(sequence1, sequence2)
+      - jarosimilarity(sequence1, sequence2)
+      - jarosimilarity_norm(sequence1, sequence2)
+      (There is no difference jarodistance(similarity) and jarodistance_norm(similarity_norm). For consistency function name.)
+
