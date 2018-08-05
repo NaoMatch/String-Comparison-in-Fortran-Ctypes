@@ -18,14 +18,23 @@
 ### Levenshtein
       - Distance (normalized)
       - Sequence (normalized)
-   
+
+### Damerau-Levenshtein
+      - Distance (normalized)
+      - Sequence (normalized)
+
 ### Gestalt Pattern Matching
       - Score
       
 ### Jaro
       - Distance (normalized)
       - Sequence (normalized)
-   
+
+## Requirement
+    textdistance
+    gfortran
+    make
+
 ## Usage
     make 
     
@@ -56,7 +65,15 @@
       - levenshteindistance_norm(sequence1, sequence2)
       - levenshteinsimilarity(sequence1, sequence2)
       - levenshteinsimilarity_norm(sequence1, sequence2)
-      
+
+### Damerau-Levenshtein      
+      - dameraulevenshteindistance(sequence1, sequence2)
+      - dameraulevenshteindistance_norm(sequence1, sequence2)
+      - dameraulevenshteinsimilarity(sequence1, sequence2)
+      - dameraulevenshteinsimilarity_norm(sequence1, sequence2)
+      (nearly agreement with https://thetaiko.wordpress.com/2011/01/21/damerau-levenshtein-distance-in-python/, 
+       not with textdistance.damerau_levenshtein.distance)
+
 ### Gestalt Pattern Matching
       - gpmscore(sequence1, sequence2)
 
