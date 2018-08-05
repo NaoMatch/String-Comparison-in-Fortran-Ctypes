@@ -11,11 +11,14 @@ import difflib
 sys.path.append("./")
 from strdist import *
 from hamming import *
-from levenshtein import *
 from lcsubstr import *
 from lcsubseq import *
-from gestaltpatternmatching import *
+from levenshtein import *
 from jaro_winkler import *
+from dameraulevenshtein import *
+from gestaltpatternmatching import *
+
+from pyjarowinkler import distance
 
 now = str(datetime.datetime.now()).encode()
 hash1 = hashlib.sha512(now).hexdigest()
@@ -24,6 +27,9 @@ hash3 = hashlib.sha512(hash2.encode()).hexdigest()
 
 def callDiffLib(str1, str2):
     return difflib.SequenceMatcher(None, str1, str2).ratio()
+
+def callPyJaro(str1, str2):
+    return 1-distance.get_jaro_distance(str1, str2, winkler=True)
 
 # print(hash1)
 # print(hash2)
@@ -36,6 +42,36 @@ def callDiffLib(str1, str2):
 print("="*100)
 print(hash1)
 print(hash2)
+
+compare2Functions(textdistance.damerau_levenshtein.distance, dameraulevenshteindistance, hash1, hash2,
+                  "Damerau Levenshtein Distance : Python vs Fortran", 100)
+
+compare2Functions(textdistance.damerau_levenshtein.similarity, dameraulevenshteinsimilarity, hash1, hash2,
+                  "Damerau Levenshtein Similarity : Python vs Fortran", 100)
+
+compare2Functions(textdistance.damerau_levenshtein.normalized_distance, dameraulevenshteindistance_norm, hash1, hash2,
+                  "Damerau Levenshtein Distance (Normalized) : Python vs Fortran", 100)
+
+compare2Functions(textdistance.damerau_levenshtein.normalized_similarity, dameraulevenshteinsimilarity_norm, hash1, hash2,
+                  "Damerau Levenshtein Similarity (Normalized) : Python vs Fortran", 100)
+
+compare2Functions(textdistance.jaro_winkler.distance, jarowinklerdisrance, hash1, hash2,
+                  "Jaro-Winkler Distance : Python vs Fortran", 100)
+
+compare2Functions(textdistance.jaro_winkler.distance, callPyJaro, hash1, hash2,
+                  "Jaro-Winkler Distance : Python vs Python", 100)
+
+compare2Functions(textdistance.jaro.distance, jarodistance, hash1, hash2,
+                  "Jaro-Winkler Distance : Python vs Fortran", 100)
+
+compare2Functions(textdistance.jaro_winkler.similarity, jarosimilarity, hash1, hash2,
+                  "Jaro-Winkler Similarity : Python vs Fortran", 1000)
+
+compare2Functions(textdistance.jaro_winkler.normalized_distance, jarodistance, hash1, hash2,
+                  "Jaro-Winkler Distance (Normalized) : Python vs Fortran", 1000)
+
+compare2Functions(textdistance.jaro_winkler.normalized_similarity, jarosimilarity, hash1, hash2,
+                  "Jaro-Winkler Similarity (Normalized) : Python vs Fortran", 1000)
 
 compare2Functions(textdistance.jaro.distance, jarodistance, hash1, hash2,
                   "Jaro Distance : Python vs Fortran", 1000)
