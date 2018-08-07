@@ -1,6 +1,5 @@
 import sys
 import textdistance
-import py_common_subseq
 import hashlib
 import numpy as np
 from ctypes import *
@@ -17,8 +16,6 @@ from levenshtein import *
 from jaro_winkler import *
 from dameraulevenshtein import *
 from gestaltpatternmatching import *
-
-from pyjarowinkler import distance
 
 now = str(datetime.datetime.now()).encode()
 hash1 = hashlib.sha512(now).hexdigest()
