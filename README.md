@@ -3,32 +3,32 @@
 ## Algorithms
 ### Longest Common Substring
       - Distance (normalized)
-      - Sequence (normalized)
+      - Similarity (normalized)
       - Character
          
 ### Longest Common Subsequence
       - Distance (normalized)
-      - Sequence (normalized)
+      - Similarity (normalized)
       - Character
       
 ### Hamming 
       - Distance (normalized)
-      - Sequence (normalized)
+      - Similarity (normalized)
    
 ### Levenshtein
       - Distance (normalized)
-      - Sequence (normalized)
+      - Similarity (normalized)
 
 ### Damerau-Levenshtein
       - Distance (normalized)
-      - Sequence (normalized)
+      - Similarity (normalized)
 
 ### Gestalt Pattern Matching
       - Score
       
 ### Jaro
       - Distance (normalized)
-      - Sequence (normalized)
+      - Similarity (normalized)
 
 ## Requirement
     textdistance
