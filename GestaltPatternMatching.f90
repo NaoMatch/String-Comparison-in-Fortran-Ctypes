@@ -45,26 +45,35 @@ contains
         implicit none
         character(len=*), intent(in) :: char1, char2
         integer :: lcsTable(len_trim(char1), len_trim(char2))
-        integer :: LCSubstrLenPosi(3), i, j
+        integer :: LCSubstrLenPosi(3), i, j, f
+        integer :: len_char1, len_char2, val
+        character(len=1) :: tmp
 
-        lcsTable=0                                  ! Initialize
-        do i=1, len_trim(char1)                     ! The 1st Character Matching
-            if (char2(1:1) .eq. char1(i:i)) lcsTable(i, 1)=1
+        len_char1 = len_trim(char1)
+        len_char2 = len_trim(char2)
+        lcsTable=0
+
+        tmp = char2(1:1)
+        do i=1, len_char1
+            lcsTable(i, 1) = tmp .eq. char1(i:i)
         end do
 
-        do j=1, len_trim(char2)                     ! The 1st Character Matching
-            if (char1(1:1) .eq. char2(j:j)) lcsTable(1, j)=1
+        tmp = char1(1:1)
+        do j=1, len_char2
+            lcsTable(1, j) = tmp .eq. char2(j:j)
         end do
 
-        do j=2, len_trim(char2)
-            do i=2, len_trim(char1)
-                if (char1(i:i) .eq. char2(j:j)) lcsTable(i, j)=lcsTable(i-1, j-1)+1
+        do j=2, len_char2
+            tmp = char2(j:j)
+            do i=2, len_char1
+                f = char1(i:i) .eq. tmp
+                val = lcsTable(i-1, j-1)+1
+                lcsTable(i, j) = minval((/val, val*f/))
             end do
         end do
 
         ! Results
         LCSubstrLenPosi(1)   = maxval(lcsTable)
         LCSubstrLenPosi(2:3) = maxloc(lcsTable)
-        end function LCSubstrLenPosi
-
+    end function LCSubstrLenPosi
 end subroutine gestaltpatternmatching
